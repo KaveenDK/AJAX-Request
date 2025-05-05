@@ -55,43 +55,10 @@
     }); */
 </script>
 
-<script>
-    $("#ajax-btn").click(function(){
-        $.ajax({
-            url: "database.json",
-            method: "GET",
-            success: function(response) {
-                console.log(response);
-                loadInfo(response);
-            },
-            error: function(error) {
-                console.log(error);
-                alert("Resource Not Found");
-            }
-        });
-    });
-
-    function loadInfo(data) {
-        const tbody = $('#ajax-table tbody');
-        tbody.empty();
-        data.forEach((person) => {
-            const addresses = person.äddress.map(addr => `${addr.no}, ${addr.street}, ${addr.city}`).join("<br>");
-            tbody.append(`
-                <tr>
-                    <td>${person.name}</td>
-                    <td>${addresses}</td>
-                    <td>${person.mobile}</td>
-                    <td>${person.email}</td>
-                </tr>
-            `);
-        });
-    }
-</script>
-
 <!--<script>-->
 <!--    $("#ajax-btn").click(function(){-->
 <!--        $.ajax({-->
-<!--            url: "https://jsonplaceholder.typicode.com/posts",-->
+<!--            url: "database.json",-->
 <!--            method: "GET",-->
 <!--            success: function(response) {-->
 <!--                console.log(response);-->
@@ -108,16 +75,49 @@
 <!--        const tbody = $('#ajax-table tbody');-->
 <!--        tbody.empty();-->
 <!--        data.forEach((person) => {-->
+<!--            const addresses = person.äddress.map(address => `${address.no}, ${address.street}, ${address.city}`).join("<br>");-->
 <!--            tbody.append(`-->
 <!--                <tr>-->
-<!--                    <td>${person.userId}</td>-->
-<!--                    <td>${person.id}</td>-->
-<!--                    <td>${person.title}</td>-->
-<!--                    <td>${person.body}</td>-->
+<!--                    <td>${person.name}</td>-->
+<!--                    <td>${addresses}</td>-->
+<!--                    <td>${person.mobile}</td>-->
+<!--                    <td>${person.email}</td>-->
 <!--                </tr>-->
 <!--            `);-->
 <!--        });-->
 <!--    }-->
 <!--</script>-->
+
+<script>
+    $("#ajax-btn").click(function(){
+        $.ajax({
+            url: "https://jsonplaceholder.typicode.com/posts",
+            method: "GET",
+            success: function(response) {
+                console.log(response);
+                loadInfo(response);
+            },
+            error: function(error) {
+                console.log(error);
+                alert("Resource Not Found");
+            }
+        });
+    });
+
+    function loadInfo(data) {
+        const tbody = $('#ajax-table tbody');
+        tbody.empty();
+        data.forEach((person) => {
+            tbody.append(`
+                <tr>
+                    <td>${person.userId}</td>
+                    <td>${person.id}</td>
+                    <td>${person.title}</td>
+                    <td>${person.body}</td>
+                </tr>
+            `);
+        });
+    }
+</script>
 </body>
 </html>
