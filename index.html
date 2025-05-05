@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX Example</title>
+</head>
+<body>
+<h1>AJAX GDSE 72</h1>
+<p id="response"></p>
+<button id="ajax-btn">SEND AJAX Request</button>
+
+<table id="ajax-table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Mobile</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+    /* $('#ajax-btn').click(function () {
+        console.log('Request Started');
+        var http = new XMLHttpRequest();
+        console.log(http.readyState, 'After XMLHttp Request Object Created');
+        http.open('GET', 'db.txt', true); - //Working
+        console.log(http.readyState, 'After Open Method Invoked');
+        // http.open('GET', 'js/main.js'); - Working
+        // http.open('GET', 'https://facebook.com'); - Not Working
+        // http.open('GET', 'https://IJSE.lk'); - Not Working
+        // http.open('GET', 'https://example.com/'); - Not Working
+        // http.open('GET', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css'); - Working
+        console.log(http.responseText);
+        console.log(http.readyState, 'After Respond Text Printed');
+        http.send();
+        http.onreadystatechange = function () {
+            console.log(http.readyState, 'Inside On Ready State Change');
+            console.log(http.responseText);
+            // const text = document.getElementById("response");
+            // text.append(http.responseText);
+            if (http.status === 200 && http.readyState === 4) {
+                $('#response').append(http.responseText);
+            }
+            if (http.status === 404 && http.readyState === 4) {
+                alert('Resourse is Not Found');
+                // $('#response').append("NOT FOUND");
+            }
+        }
+        console.log(http.readyState, 'After Send Method Invoked');
+        console.log('Request Completed');
+    }); */
+</script>
+
+<script>
+    $("#ajax-btn").click(function(){
+        $.ajax({
+            url: "database.json",
+            method: "GET",
+            success: function(response) {
+                console.log(response);
+                loadInfo(response);
+            },
+            error: function(error) {
+                console.log(error);
+                alert("Resource Not Found");
+            }
+        });
+    });
+
+    function loadInfo(data) {
+        const tbody = $('#ajax-table tbody');
+        tbody.empty();
+        data.forEach((person) => {
+            const addresses = person.äddress.map(addr => `${addr.no}, ${addr.street}, ${addr.city}`).join("<br>");
+            tbody.append(`
+                <tr>
+                    <td>${person.name}</td>
+                    <td>${addresses}</td>
+                    <td>${person.mobile}</td>
+                    <td>${person.email}</td>
+                </tr>
+            `);
+        });
+    }
+</script>
+
+<!--<script>-->
+<!--    $("#ajax-btn").click(function(){-->
+<!--        $.ajax({-->
+<!--            url: "https://jsonplaceholder.typicode.com/posts",-->
+<!--            method: "GET",-->
+<!--            success: function(response) {-->
+<!--                console.log(response);-->
+<!--                loadInfo(response);-->
+<!--            },-->
+<!--            error: function(error) {-->
+<!--                console.log(error);-->
+<!--                alert("Resource Not Found");-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    function loadInfo(data) {-->
+<!--        const tbody = $('#ajax-table tbody');-->
+<!--        tbody.empty();-->
+<!--        data.forEach((person) => {-->
+<!--            tbody.append(`-->
+<!--                <tr>-->
+<!--                    <td>${person.userId}</td>-->
+<!--                    <td>${person.id}</td>-->
+<!--                    <td>${person.title}</td>-->
+<!--                    <td>${person.body}</td>-->
+<!--                </tr>-->
+<!--            `);-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

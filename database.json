@@ -1,0 +1,36 @@
+[
+  {
+    "name" : "Dimantha",
+    "äddress" : [
+      {
+        "no" : "1",
+        "street" : "Main St",
+        "city" : "Colombo"
+      },
+      {
+        "no" : "2",
+        "street" : "Main St",
+        "city" : "Colombo"
+      }
+    ],
+    "mobile" : "0762900250",
+    "email" : "dimantha@gmail.com"
+  },
+  {
+    "name" : "Kaveen",
+    "äddress" : [
+      {
+        "no" : "10",
+        "street" : "Main St",
+        "city" : "Galle"
+      },
+      {
+        "no" : "20",
+        "street" : "Main St",
+        "city" : "Galle"
+      }
+    ],
+    "mobile" : "0717757140",
+    "email" : "kaveen@gmail.com"
+  }
+]
